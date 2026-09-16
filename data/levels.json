@@ -20,8 +20,10 @@
       "pieces": [
         "start",
         "spikes",
-        "gap",
-        "step",
+        "spikes",
+        "spikes",
+        "spikes",
+        "spikes",,
         "spikepit",
         "platform",
         "gap",
