@@ -28,6 +28,18 @@
         "flat",
         "finish"
       ]
+    },
+    {
+      "name": "Level 3 - Getting There",
+      "pieces": [
+        "start",
+        "spikes",
+        "spikes",
+        "platform",
+        "flat",
+        "gap",
+        "finish"
+      ]
     }
   ]
 }
