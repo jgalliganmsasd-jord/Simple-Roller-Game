@@ -19,15 +19,10 @@
       "name": "Level 2 - Watch Your Step",
       "pieces": [
         "start",
+        "flat",
         "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
-        "spikes",
+        "platform",
+        
         "finish"
       ]
     },
