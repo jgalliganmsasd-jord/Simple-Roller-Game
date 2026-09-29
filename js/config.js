@@ -20,7 +20,7 @@ var CONFIG = {
   // --- how the player moves -------------------------------------------
   MOVE_SPEED: 19.2,      // pixels per frame left and right
   JUMP_POWER: 13.2,     // how hard the jump pushes UP. bigger = higher
-  GRAVITY: 0.6,       // how hard the world pulls DOWN. bigger = heavier
+  GRAVITY: 10,       // how hard the world pulls DOWN. bigger = heavier
   MAX_FALL: 6,       // fastest the player is allowed to fall
 
   // --- the player's size ----------------------------------------------
