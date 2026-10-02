@@ -13,7 +13,10 @@ var Player = {
   vx: 0,           // speed left and right
   vy: 0,           // speed up and down
   onGround: false, // is the player standing on something right now?
-  angle: 0         // how far the circle has rolled, for drawing the dot
+  angle: 0,         // how far the circle has rolled, for drawing the dot
+  jumpsUsed: 0, // how many jumps we have spent since we last landed  
+ jumpWasDown: false // was the jump key already held last frame?  
+
 };
 
 // Put the player back at the level's S square.
@@ -24,6 +27,9 @@ Player.reset = function () {
   Player.vy = 0;
   Player.onGround = false;
   Player.angle = 0;
+  Player.jumpsUsed = 0;  
+ Player.jumpWasDown = false;  
+
 };
 
 // Run one frame of player movement.
@@ -35,11 +41,20 @@ Player.update = function () {
   if (Input.left)  { Player.vx = -CONFIG.MOVE_SPEED; }
   if (Input.right) { Player.vx =  CONFIG.MOVE_SPEED; }
 
-  // --- 2. jump, but only if we are standing on something --------------
-  if (Input.jump && Player.onGround) {
-    Player.vy = -CONFIG.JUMP_POWER;   // negative is UP
-    Player.onGround = false;
-  }
+  // --- 2. jump, including the weaker mid-air jump --------------------  
+var jumpJustPressed = Input.jump && !Player.jumpWasDown;  
+if (jumpJustPressed && Player.jumpsUsed < CONFIG.MAX_JUMPS) {  
+  // second jump is weaker, so we pick the power by which jump this is  
+  if (Player.jumpsUsed === 0) {  
+    Player.vy = -CONFIG.JUMP_POWER;  
+  } else {  
+    Player.vy = -CONFIG.SECOND_JUMP_POWER;  
+  }  
+  Player.onGround = false;  
+  Player.jumpsUsed = Player.jumpsUsed + 1;  
+}  
+Player.jumpWasDown = Input.jump;  
+
 
   // --- 3. gravity pulls down every single frame -----------------------
   Player.vy = Player.vy + CONFIG.GRAVITY;
@@ -57,9 +72,10 @@ Player.update = function () {
   }
 
   // --- 5. move up or down, one pixel at a time ------------------------
-  var stepY = 0;
-  if (Player.vy > 0) { stepY = 1; }
-  if (Player.vy < 0) { stepY = -1; }
+  if (stepY > 0) {  
+  Player.onGround = true;  
+  Player.jumpsUsed = 0; // landing refills your jumps  
+}  
 
   Player.onGround = false;
 
