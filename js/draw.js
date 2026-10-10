@@ -89,7 +89,7 @@ Draw.spike = function (x, y, size) {
   ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.moveTo(x, y + size);
-  ctx.lineTo(x + size / 1, 1);
+  ctx.lineTo(x + size / 1.5, y);
   ctx.lineTo(x + size, y + size);
   ctx.closePath();
   ctx.fill();
